@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct Play_App: App {
-    let context = RouterContext()
     var body: some Scene {
         WindowGroup {
             LoginView()

@@ -51,7 +51,11 @@ struct LoginView: View {
                     Text(bindings.message)
                 }
             } else {
-                HomeView()
+                let provider = CharactersProvider()
+                let repository = CharacterRepository(provider: provider)
+                let viewModel = CharactersListViewModel(repository: repository)
+                let bindings = CharactersListBindings(viewModel: viewModel)
+                CharactersListView(bindings: bindings)
             }
         }
     }

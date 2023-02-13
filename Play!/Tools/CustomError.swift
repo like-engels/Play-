@@ -7,7 +7,6 @@
 
 import Foundation
 
-struct CustomError: Error {
+struct Failure: Error {
     let message: String
-    
 }

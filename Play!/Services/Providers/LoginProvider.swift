@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 class LoginProvider: LoginAdapter {
     func login(email: String, password: String) async -> HttpResponse {
