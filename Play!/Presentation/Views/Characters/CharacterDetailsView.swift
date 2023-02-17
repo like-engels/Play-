@@ -9,6 +9,18 @@ import SwiftUI
 
 struct CharacterDetailsView: View {
     let character: Character
+    let colour: Color
+    
+    private let colourPalette: [String: Color] = [
+        "unknown": .gray,
+        "Alive": .green,
+        "Dead": .red
+    ]
+    
+    init(character: Character) {
+        self.character = character
+        self.colour = colourPalette[character.status] ?? .gray
+    }
     
     @ViewBuilder var header: some View {
         HStack {
@@ -25,9 +37,14 @@ struct CharacterDetailsView: View {
             Spacer()
             VStack {
                 Text(character.name)
-                    .font(.system(size: 24, weight: .regular, design: .rounded))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                 Text(character.gender)
-                Text(character.status)
+                HStack {
+                    Circle()
+                        .frame(width: 10, height: 10)
+                        .foregroundColor(colour)
+                    Text(character.status)
+                }
             }
         }
     }
@@ -36,7 +53,25 @@ struct CharacterDetailsView: View {
         VStack {
             header
                 .padding(.all, 30)
+            
+            VStack(alignment: .leading) {
+                Text("Species: \(character.species)")
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                
+                Text("Gender: \(character.gender)")
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                
+                Text("From: \(character.origin.name)")
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                
+                Text("Located at: \(character.location.name)")
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+            }
+            .padding(.horizontal, 30)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
             Spacer()
+            
         }
     }
 }
